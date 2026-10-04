@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CloudVault — Secure Cloud Storage</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div>
+        <p class="eyebrow">AWS • S3 • IAM • SECURITY</p>
+        <h1>CloudVault</h1>
+        <p class="subtitle">A secure cloud file storage demonstration.</p>
+      </div>
+      <button id="logoutBtn" class="secondary hidden">Logout</button>
+    </header>
+
+    <section id="loginCard" class="card">
+      <h2>Sign in</h2>
+      <p>Use the application credentials configured in your local <code>.env</code> file.</p>
+      <form id="loginForm">
+        <label>Username<input id="username" required></label>
+        <label>Password<input id="password" type="password" required></label>
+        <button type="submit">Sign in</button>
+      </form>
+      <p id="loginMessage" class="message"></p>
+    </section>
+
+    <section id="appCard" class="hidden">
+      <div class="card">
+        <div class="row between">
+          <div>
+            <h2>Your files</h2>
+            <p>Files are stored in a private S3 bucket and downloaded through short-lived signed URLs.</p>
+          </div>
+          <button id="refreshBtn" class="secondary">Refresh</button>
+        </div>
+
+        <form id="uploadForm" class="upload-box">
+          <label>Select a file
+            <input id="file" type="file" required>
+          </label>
+          <button type="submit">Upload securely</button>
+        </form>
+        <p id="uploadMessage" class="message"></p>
+
+        <div id="files"></div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Security controls</h3>
+          <ul>
+            <li>Credentials stay outside source code.</li>
+            <li>S3 bucket remains private.</li>
+            <li>Uploads use server-side encryption (SSE-S3).</li>
+            <li>Downloads use expiring presigned URLs.</li>
+            <li>IAM can enforce least-privilege access.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Storage status</h3>
+          <p id="health">Checking AWS connection…</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
